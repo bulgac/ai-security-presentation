@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP LLM Top 10 Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Smooth transition for theme changes */
+            transition: background-color 0.3s ease;
+        }
+        .text-shadow-lg {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+    <script>
+        // Set Tailwind dark mode to use the 'class' strategy
+        tailwind.config = {
+          darkMode: 'class',
+        }
+      </script>
+</head>
+<body class="bg-gray-100 dark:bg-[#0e1f3a] flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-4xl mx-auto p-4">
+        <div id="presentation-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-colors duration-300">
+            <!-- Slide content will be injected here by JavaScript -->
+            <div id="slide-viewer" class="p-8 md:p-12 min-h-[600px] flex flex-col justify-center transition-all duration-300"></div>
+
+            <!-- Navigation Controls -->
+            <div class="bg-gray-50 dark:bg-slate-900 border-t border-gray-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between transition-colors duration-300">
+                <button id="prev-btn" class="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors dark:bg-slate-600 dark:text-gray-100 dark:hover:bg-slate-500">
+                    Previous
+                </button>
+                <div class="flex items-center gap-4">
+                    <div id="slide-counter" class="text-gray-600 dark:text-gray-400 font-medium"></div>
+                     <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zM5 11a1 1 0 100-2H4a1 1 0 100 2h1zM8 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <button id="next-btn" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors dark:bg-blue-700 dark:hover:bg-blue-800">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const presentationData = [
+            // Slide 1: NEW Title Slide
+            {
+                title: 'AI Security',
+                isTitleSlide: true,
+                backgroundImageUrl: './AI.jpg'
+            },
+            // Slide 2: Original Introduction
+            {
+                title: 'OWASP Топ 10 уязвимостей для LLM-приложений в 2025',
+                points: [
+                    'OWASP (Open Worldwide Application Security Project) - это некоммерческая организация, занимающаяся улучшением безопасности программного обеспечения.',
+                    'Проект "OWASP Top 10 для приложений LLM" — это инициатива, начатая в 2023 году, для выявления и устранения проблем безопасности, специфичных для приложений искусственного интеллекта.',
+                    'Он представляет собой список 10 наиболее распространенных уязвимостей, с которыми сталкиваются большие языковые модели сегодня.',
+                    'Цель проекта — повысить осведомленность и заложить основу для безопасного использования LLM.'
+                ]
+            },
+            // Slide 3: List of vulnerabilities
+            {
+                title: 'Cписок 10 наиболее распространенных уязвимостей',
+                points: [
+                    '<b>LLM01:</b> Prompt Injection',
+                    '<b>LLM02:</b> Утечка конфиденциальной информации (Sensitive Information Disclosure)',
+                    '<b>LLM03:</b> Уязвимости цепочки поставоки (Supply Chain)',
+                    '<b>LLM04:</b> Отравление данных и модели (Data and Model Poisoning)',
+                    '<b>LLM05:</b> Некорректная обработка выходных данных (Improper Output Handling)',
+                    '<b>LLM06:</b> Чрезмерная агентность (Excessive Agency)',
+                    '<b>LLM07:</b> Утечка системных инструкций (System Prompt Leakage)',
+                    '<b>LLM08:</b> Уязвимости векторов и эмбеддингов (Vector and Embedding Weaknesses)',
+                    '<b>LLM09:</b> Введение в заблуждение (Misinformation)',
+                    '<b>LLM10:</b> Неограниченное потребление (Unbounded Consumption)'
+                ]
+            },
+            // Slide 4: LLM01
+            {
+                title: 'LLM01: Prompt Injection',
+                points: [
+                    '<b>Описание:</b> Эта уязвимость возникает, когда пользовательские промпты изменяют поведение или вывод LLM непреднамеренным образом.',
+                    '<b>Атака:</b> Злоумышленники могут манипулировать промптами для изменения поведения модели или обхода протоколов безопасности LLM.',
+                    '<b>Типы:</b> Может быть прямая (намеренное изменение) или непрямая (через внешние источники, такие как веб-сайты или файлы) инъекция.'
+                ]
+            },
+            // Slide 5: LLM02
+            {
+                title: 'LLM02: Утечка конфиденциальной информации',
+                points: [
+                    '<b>Описание:</b> LLM случайно раскрывают конфиденциальные данные.',
+                    '<b>Примеры:</b> Личные записи пользователей (PII), финансовые детали, медицинские записи, коммерческие тайны, учетные данные или данные для обучения.',
+                    '<b>Последствия:</b> Это может привести к несанкционированному доступу к данным, нарушениям конфиденциальности и утечкам интеллектуальной собственности.'
+                ]
+            },
+             // Slide 6: LLM03
+            {
+                title: 'LLM03: Уязвимости цепочки поставоки',
+                points: [
+                    '<b>Описание:</b> Цепочки поставок LLM уязвимы к угрозам, которые могут повлиять на целостность обучающих данных, моделей и платформ развертывания.',
+                    '<b>Атака:</b> Атакующие могут использовать уязвимости в сторонних компонентах (например, библиотеках Python, устаревших компонентах или предварительно обученных моделях), чтобы внедрить вредоносный код или инструкции.',
+                    '<b>Последствия:</b> Это может привести к предвзятым результатам, нарушениям безопасности или сбоям системы.'
+                ]
+            },
+            // Slide 7: LLM04
+            {
+                title: 'LLM04: Отравление данных и модели',
+                points: [
+                    '<b>Описание:</b> Отравление данных происходит, когда данные на этапах предварительного обучения, тонкой настройки или встраивания манипулируются для внедрения уязвимостей, бэкдоров или искажений.',
+                    '<b>Результат:</b> Это может поставить под угрозу безопасность, производительность или этичное поведение модели, приводя к вредоносным или искаженным результатам.',
+                    '<b>Методы:</b> Вредоносный код может быть внедрен напрямую в процесс обучения или пользователи могут неосознанно внедрять чувствительную информацию.'
+                ]
+            },
+            // Slide 8: LLM05
+            {
+                title: 'LLM05: Некорректная обработка выходных данных',
+                points: [
+                    '<b>Описание:</b> Эта уязвимость относится к недостаточной проверке, санитарной обработке и обработке выходных данных, генерируемых LLM, прежде чем они передаются в другие компоненты или системы.',
+                    '<b>Последствия:</b> Успешная эксплуатация может привести к атакам XSS, CSRF, а также SSRF, выполнению удаленного кода (RCE) или повышению привилегий в серверных системах.'
+                ]
+            },
+            // Slide 9: LLM06
+            {
+                title: 'LLM06: Чрезмерная агентность',
+                points: [
+                    '<b>Описание:</b> LLM-системам часто предоставляется степень автономности (агентности) для вызова функций или взаимодействия с другими системами через расширения (плагины).',
+                    '<b>Уязвимость:</b> Избыточная агентность — это уязвимость, позволяющая выполнять вредоносные действия в ответ на неожиданные, неоднозначные или манипулируемые выходные данные LLM.',
+                    '<b>Триггеры:</b> Может быть вызвана галлюцинациями или вредоносными инъекциями промптов.'
+                ]
+            },
+            // Slide 10: LLM07
+            {
+                title: 'LLM07: Утечка системных инструкций',
+                points: [
+                    '<b>Описание:</b> Уязвимость утечки системного промпта относится к риску того, что системные промпты или инструкции, используемые для управления поведением LLM, могут содержать конфиденциальную информацию.',
+                    '<b>Последствия:</b> Обнаружение этой информации может быть использовано злоумышленниками для облегчения других атак, например, для кражи учетных данных, раскрытия внутренних правил или фильтрующих критериев.'
+                ]
+            },
+            // Slide 11: LLM08
+            {
+                title: 'LLM08: Уязвимости векторов и эмбеддингов',
+                points: [
+                    '<b>Контекст:</b> Векторные и встраиваемые уязвимости представляют значительные риски безопасности в системах, использующих Retrieval Augmented Generation (RAG) с LLM.',
+                    '<b>Описание:</b> Слабости в том, как векторы и встраивания генерируются, хранятся или извлекаются, могут быть использованы для внедрения вредоносного контента, манипулирования выводами модели или доступа к конфиденциальной информации.'
+                ]
+            },
+            // Slide 12: LLM09
+            {
+                title: 'LLM09: Введение в заблуждение',
+                points: [
+                    '<b>Описание:</b> Дезинформация от LLM — это основная уязвимость, когда LLM генерируют ложную или вводящую в заблуждение информацию, которая кажется правдоподобной (так называемые "галлюцинации").',
+                    '<b>Последствия:</b> Это может привести к нарушениям безопасности, репутационному ущербу и юридической ответственности.'
+                ]
+            },
+            // Slide 13: LLM10
+            {
+                title: 'LLM10: Неограниченное потребление',
+                points: [
+                    '<b>Описание:</b> Эта уязвимость относится к ситуациям, когда приложение LLM позволяет пользователям выполнять чрезмерные и неконтролируемые выводы.',
+                    '<b>Риски:</b> Отказ в обслуживании (DoS), экономические потери (Denial of Wallet), кража модели и деградация сервиса.',
+                    '<b>Причина:</b> Высокие вычислительные требования LLM делают их уязвимыми для эксплуатации ресурсов.'
+                ]
+            },
+            // Slide 14: Image Slide
+            {
+                title: 'Логическая диаграмма уязвимостей',
+                isImageSlide: true,
+                imageUrl: 'https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2025/01/17/ml-16964-Logical-diagram.png'
+            },
+            // Slide 15: Recommendations 1
+            {
+                title: 'Основные выводы и рекомендации (1/2)',
+                points: [
+                    '<b>Комплексный подход:</b> Относитесь к LLM как к "новичку в команде", всегда тщательно проверяя их работу.',
+                    '<b>Строгая валидация и очистка данных:</b> Все данные, поступающие в LLM и выходящие из нее, должны быть тщательно проверены и очищены.',
+                    '<b>Принцип наименьших привилегий:</b> Минимизируйте функциональность и разрешения, предоставляемые LLM и связанным с ней расширениям (плагинам).'
+                ]
+            },
+            // Slide 16: Recommendations 2
+            {
+                title: 'Основные выводы и рекомендации (2/2)',
+                points: [
+                    '<b>Контроль и участие человека:</b> Внедряйте механизмы "человек в контуре" (human-in-the-loop) для операций с высоким риском.',
+                    '<b>Надёжность цепочки поставок:</b> Регулярно проводите аудит цепочки поставок, используйте подписанные и проверенные зависимости.',
+                    '<b>Управление ресурсами и предотвращение DoS:</b> Устанавливайте разумные ограничения скорости и квоты пользователей.',
+                    '<b>Постоянное тестирование и мониторинг:</b> Регулярно проводите адверсариальное тестирование (red teaming) и симуляции атак.'
+                ]
+            },
+            // Slide 17: Sources
+            {
+                title: 'Ссылки на источники',
+                points: [
+                    '<a href="https://genai.owasp.org/llm-top-10/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://genai.owasp.org/llm-top-10/</a>',
+                    '<a href="https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks</a>',
+                    '<a href="https://aws.amazon.com/blogs/machine-learning/secure-a-generative-ai-assistant-with-owasp-top-10-mitigation/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://aws.amazon.com/blogs/machine-learning/secure-a-generative-ai-assistant-with-owasp-top-10-mitigation/</a>',
+                    '<a href="https://portswigger.net/web-security/llm-attacks" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://portswigger.net/web-security/llm-attacks</a>',
+                    '<a href="https://arxiv.org/abs/2306.05499" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://arxiv.org/abs/2306.05499</a>',
+                    '<a href="https://github.com/LLMSecurity/HouYi" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">https://github.com/LLMSecurity/HouYi</a>'
+                ]
+            }
+        ];
+
+        let currentSlide = 0;
+        const slideViewer = document.getElementById('slide-viewer');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideCounter = document.getElementById('slide-counter');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function renderSlide(slideIndex) {
+            const slideData = presentationData[slideIndex];
+
+            // Reset styles for every slide change
+            slideViewer.style.backgroundImage = '';
+            slideViewer.style.backgroundSize = '';
+            slideViewer.style.backgroundPosition = '';
+            slideViewer.classList.remove('text-center');
+            slideViewer.innerHTML = ''; // Clear previous content
+
+            // Logic for the new title slide
+            if (slideData.isTitleSlide) {
+                slideViewer.style.backgroundImage = `url('${slideData.backgroundImageUrl}')`;
+                slideViewer.style.backgroundSize = 'cover';
+                slideViewer.style.backgroundPosition = 'center';
+                slideViewer.classList.add('text-center'); // Center the title
+                // Add the big, white, shadowed title
+                slideViewer.innerHTML = `<h1 class="text-6xl md:text-8xl font-extrabold text-white text-shadow-lg">${slideData.title}</h1>`;
+
+            // Logic for other slides (image or points)
+            } else {
+                let contentHtml = '';
+                // Check if this slide is for displaying an image
+                if (slideData.isImageSlide) {
+                    contentHtml = `<div class="flex justify-center items-center h-full">
+                                    <img src="${slideData.imageUrl}" alt="${slideData.title}" class="max-w-full max-h-[400px] rounded-lg shadow-md bg-white p-2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f8f8f8/ccc?text=Image+Not+Found';">
+                                   </div>`;
+                } else { // Standard slide with bullet points
+                    let pointsHtml = '<ul class="space-y-4 list-disc list-inside text-gray-700 dark:text-gray-300 text-lg">';
+                    if(slideData.points){
+                        slideData.points.forEach(point => {
+                            pointsHtml += `<li class="leading-relaxed">${point}</li>`;
+                        });
+                    }
+                    pointsHtml += '</ul>';
+                    contentHtml = pointsHtml;
+                }
+
+                // Add title and content for standard slides
+                slideViewer.innerHTML = `
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">${slideData.title}</h1>
+                    ${contentHtml}
+                `;
+            }
+
+            updateControls(slideIndex);
+        }
+
+        function updateControls(slideIndex) {
+            currentSlide = slideIndex;
+            slideCounter.textContent = `Slide ${slideIndex + 1} of ${presentationData.length}`;
+            prevBtn.disabled = slideIndex === 0;
+            nextBtn.disabled = slideIndex === presentationData.length - 1;
+        }
+
+        // Theme switcher logic
+        function setTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+                localStorage.setItem('color-theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference or system preference on load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            setTheme(!document.documentElement.classList.contains('dark'));
+        });
+
+        // Navigation logic
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                renderSlide(currentSlide - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < presentationData.length - 1) {
+                renderSlide(currentSlide + 1);
+            }
+        });
+
+        // Initial render
+        renderSlide(0);
+
+    </script>
+</body>
+</html>
