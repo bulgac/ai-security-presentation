@@ -1,0 +1,70 @@
+
+MAIN LINK OWASP
+______________________________________
+presentation
+https://genai.owasp.org/resource/owasp-top-10-for-llm-overview-presentation/
+
+Youtube
+https://www.youtube.com/watch?v=cYuesqIKf9A
+
+on github:
+https://github.com/OWASP/www-project-top-10-for-large-language-model-applications/blob/main/2_0_vulns
+
+Top 10 Risk & Mitigations for LLMs and Gen AI Apps
+https://genai.owasp.org/llm-top-10/
+
+    LLM01:2025 Prompt Injection
+    https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+
+    LLM02:2025 Sensitive Information Disclosure
+    https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/
+
+    LLM03:2025 Supply Chain
+    https://genai.owasp.org/llmrisk/llm032025-supply-chain/
+
+    LLM04:2025 Data and Model Poisoning
+    https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/
+
+    LLM05:2025 Improper Output Handling
+    https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/
+
+    LLM06:2025 Excessive Agency
+    https://genai.owasp.org/llmrisk/llm062025-excessive-agency/
+
+    LLM07:2025 System Prompt Leakage
+    https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/
+
+    LLM08:2025 Vector and Embedding Weaknesses
+    https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/
+
+    LLM09:2025 Misinformation
+    https://genai.owasp.org/llmrisk/llm092025-misinformation/
+
+    LLM10:2025 Unbounded Consumption
+    https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/
+
+LLM and Gen AI Data Security Best Practices
+https://genai.owasp.org/resource/llm-and-gen-ai-data-security-best-practices/
+
+YOUTUBE
+https://www.youtube.com/watch?v=mpvfEsyl-C8
+
+===================================
+
+https://www.cloudsine.tech/llm-vulnerabilities-8-critical-threats-and-how-to-mitigate-them/#:~:text=Prompt%20injection%20is%20a%20class,or%20control%20of%20downstream%20processes
+
+https://portswigger.net/web-security/llm-attacks
+
+https://www.techrepublic.com/article/protect-your-ai-investment-7-ways-to-safeguard-your-llms/
+
+https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks#top-10-owasp-cyber-security-risks-for-large-language-models
+
+https://aws.amazon.com/blogs/machine-learning/secure-a-generative-ai-assistant-with-owasp-top-10-mitigation/
+
+https://roadmap.sh/ai-red-teaming
+
+======================================
+https://github.com/LLMSecurity/HouYi
+
+https://arxiv.org/abs/2306.05499
+https://watcher.guru/news/how-to-jailbreak-chatgpt
