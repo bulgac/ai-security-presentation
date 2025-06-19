@@ -127,8 +127,8 @@ LLM-системам часто предоставляется степень а
 --------------------------------------------------------------------------------
 ## Слайд 13: Ссылки на источники
 
-https://genai.owasp.org/llm-top-10/
-https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks
-https://portswigger.net/web-security/llm-attacks
-https://arxiv.org/abs/2306.05499
-https://github.com/LLMSecurity/HouYi
+- [https://genai.owasp.org/llm-top-10/](https://genai.owasp.org/llm-top-10/)
+- [https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks](https://www.legitsecurity.com/aspm-knowledge-base/llm-security-risks)
+- [https://portswigger.net/web-security/llm-attacks](https://portswigger.net/web-security/llm-attacks)
+- [https://arxiv.org/abs/2306.05499](https://arxiv.org/abs/2306.05499)
+- [https://github.com/LLMSecurity/HouYi](https://github.com/LLMSecurity/HouYi)
